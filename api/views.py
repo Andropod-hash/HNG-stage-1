@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 @api_view(['GET'])
 def temperature(request):
-    visitor_name = request.GET.get('visitor_name', 'Visitor')
+    visitor_name = request.GET.get('visitor_name', 'Mark')
 
     # Get client's external IP address
     try:
@@ -44,7 +44,7 @@ def temperature(request):
                 temperature = 'Unknown'
         else:
             temperature = 'Unknown'
-    else:
+    else: 
         location = 'Unknown Location'
         temperature = 'Unknown'
 
