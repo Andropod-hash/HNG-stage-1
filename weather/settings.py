@@ -20,12 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6d3++*zqp@)_)xn)gsl8sw!jef%-6xv%_9@il2re3rr(ew%w%z'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG") != "False"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".vercel.app", ".now.sh"]
 
 
 # Application definition
@@ -40,7 +39,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'rest_framework_swagger',
-    'drf_yasg',                      
+    'drf_yasg',  
+    "whitenoise.runserver_nostatic" ,                  
 ]
 
 MIDDLEWARE = [
@@ -130,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.openapi.AutoSchema',
 }
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles", "static")
